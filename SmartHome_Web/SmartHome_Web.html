@@ -1,0 +1,32 @@
+<html>
+	<head>
+		<title>Smart Home</title>
+	</head>
+	<style type="text/css">
+	.web_head{
+	text-align:center; font-size:40px; padding:10px; 
+	background-color:lightsteelblue; color:chocolate; 
+	font-weight:bold;}
+	</style>
+	<body>
+	<div class="web_head">Electrical Appliances</div>
+	<!-- in the <button> tags below the ID attribute is the value sent to the arduino -->
+	
+	<h1 style="text-align:center">Object Selection</h1>
+	<button id="10" class="object"><img src="picture/tv.jpg" width="300"></button> <!-- button for Pin10 -->
+	<button id="11" class="object"><img src="picture/pot.png" width="300"></button> <!-- button for Pin11 -->
+	<button id="12" class="object"><img src="picture/lamp.jpg" width="300"></button> <!-- button for Pin12 -->
+	
+	<script src="js/jquery.min.js"></script>
+	<script type="text/javascript">
+		var url = "http://192.168.112.2:8888/";
+		$(document).ready(function(){
+			$(".object").click(function(){
+				var p = $(this).attr('id'); // get id value (i.e. pin12, pin11, or pin10)
+				// send HTTP GET request to the IP address with the parameter "pin" and value "p", then execute the function
+				$.get(url, {pin:p}); // execute get request
+			});
+		});
+	</script>
+	</body>
+</html>
